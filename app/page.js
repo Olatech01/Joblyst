@@ -1,18 +1,63 @@
 "use client"
 
-import { ArrowDownRight, ArrowUpRight, BriefcaseBusiness, Check, MapPin, Search, Sparkles, Users } from "lucide-react"
-import Link from "next/link"
 import { useRole } from "./RoleContext"
 import Hero from "@/components/Talent/Hero"
+import PopularCategory from "@/components/Talent/PopularCategory"
+import NewestJobs from "@/components/Talent/NewestJobs"
+import HowItWorks from "@/components/Talent/HowItWorks"
+import TopCompanies from "@/components/Talent/TopCompanies"
+import Achievements from "@/components/Talent/Achievements"
+import Blog from "@/components/Talent/Blog"
+import EmployerCTA from "@/components/EmployerCTA"
+import Footer from "@/components/Footer"
+import { ArrowDownRight, ArrowUpRight, BriefcaseBusiness, Check, Users } from "lucide-react"
+import Link from "next/link"
 
 function TalentLanding() {
   return (
     <>
-      <section className="">
-        <Hero />
-      </section>
-
+      <Hero />
+      <PopularCategory />
+      <NewestJobs />
+      <HowItWorks />
+      <TopCompanies />
+      <Achievements />
+      <Blog />
+      <EmployerCTA />
+      <Footer />
     </>
+  )
+}
+
+function Metric({ value, label }) {
+  return (
+    <div className="px-2 text-center">
+      <p className="text-xl font-semibold tracking-tight text-[#183c33]">{value}</p>
+      <p className="mt-1 text-[10px] font-medium text-[#87928a] sm:text-xs">{label}</p>
+    </div>
+  )
+}
+
+function CandidateRow({ initials, name, role, match, color }) {
+  return (
+    <div className="flex items-center gap-3 py-3.5">
+      <span className={`grid size-10 shrink-0 place-items-center rounded-full text-xs font-bold text-[#40564b] ${color}`}>{initials}</span>
+      <div className="min-w-0 flex-1">
+        <p className="truncate text-sm font-semibold text-[#273b32]">{name}</p>
+        <p className="mt-1 truncate text-xs text-[#87928a]">{role}</p>
+      </div>
+      <span className="whitespace-nowrap rounded-full bg-[#eff4e7] px-2.5 py-1.5 text-[11px] font-semibold text-[#54735c]">{match}</span>
+    </div>
+  )
+}
+
+function Feature({ title, text }) {
+  return (
+    <div>
+      <span className="mb-3 grid size-8 place-items-center rounded-full bg-[#e6f16a] text-[#183c33]"><Check size={16} strokeWidth={2.5} aria-hidden="true" /></span>
+      <h3 className="text-base font-semibold text-[#183c33]">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-[#707b73]">{text}</p>
+    </div>
   )
 }
 
@@ -97,53 +142,12 @@ function EmployerLanding() {
   )
 }
 
-function JobRow({ company, title, meta, color, initials }) {
-  return (
-    <div className="flex items-center gap-3 py-3.5">
-      <span className={`grid size-10 shrink-0 place-items-center rounded-xl text-sm font-bold text-[#40564b] ${color}`}>{initials}</span>
-      <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-semibold text-[#273b32]">{title}</p>
-        <p className="mt-1 truncate text-xs text-[#87928a]">{meta}</p>
-      </div>
-      <span className="hidden text-xs font-medium text-[#87928a] sm:block">{company}</span>
-    </div>
-  )
-}
-
-function CandidateRow({ initials, name, role, match, color }) {
-  return (
-    <div className="flex items-center gap-3 py-3.5">
-      <span className={`grid size-10 shrink-0 place-items-center rounded-full text-xs font-bold text-[#40564b] ${color}`}>{initials}</span>
-      <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-semibold text-[#273b32]">{name}</p>
-        <p className="mt-1 truncate text-xs text-[#87928a]">{role}</p>
-      </div>
-      <span className="whitespace-nowrap rounded-full bg-[#eff4e7] px-2.5 py-1.5 text-[11px] font-semibold text-[#54735c]">{match}</span>
-    </div>
-  )
-}
-
-function Metric({ value, label }) {
-  return (
-    <div className="px-2 text-center">
-      <p className="text-xl font-semibold tracking-tight text-[#183c33]">{value}</p>
-      <p className="mt-1 text-[10px] font-medium text-[#87928a] sm:text-xs">{label}</p>
-    </div>
-  )
-}
-
-function Feature({ title, text }) {
-  return (
-    <div>
-      <span className="mb-3 grid size-8 place-items-center rounded-full bg-[#e6f16a] text-[#183c33]"><Check size={16} strokeWidth={2.5} aria-hidden="true" /></span>
-      <h3 className="text-base font-semibold text-[#183c33]">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-[#707b73]">{text}</p>
-    </div>
-  )
-}
-
 export default function Home() {
   const { role } = useRole()
 
-  return <main className="flex-1 bg-[#f6f7f2]">{role === "talent" ? <TalentLanding /> : <EmployerLanding />}</main>
+  return (
+    <main className="flex-1">
+      {role === "talent" ? <TalentLanding /> : <EmployerLanding />}
+    </main>
+  )
 }

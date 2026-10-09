@@ -16,7 +16,7 @@ import {
 
 const menuItems = [
     { name: 'Dashboard', icon: LayoutDashboard, href: '/dashboard' },
-    { name: 'My Resume', icon: FileText, href: '/dashboard/resume' },
+    { name: 'Resume', icon: FileText, href: '/dashboard/resume' },
     { name: 'Notification', icon: Bell, href: '/dashboard/notifications', badge: 6 },
     { name: 'Message', icon: MessageSquare, href: '/dashboard/messages', badge: 6 },
     { name: 'Account Setting', icon: Settings, href: '/dashboard/settings' },
